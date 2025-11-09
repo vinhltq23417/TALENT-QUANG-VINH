@@ -47,7 +47,7 @@ function App() {
               name: `${macro} - ${micro}`,
               type: 'CUSTOMER',
               budget: totalBudget * 0.6 / totalMicros,
-              baseROI: 150 + Math.random() * 100 // Mock ROI
+              baseROI: 40 + Math.random() * 70 // Mock ROI
             });
           });
         });
@@ -60,7 +60,7 @@ function App() {
             name: product,
             type: 'PRODUCT', 
             budget: totalBudget * 0.4 / selectedProducts.length,
-            baseROI: 160 + Math.random() * 80
+            baseROI: 50 + Math.random() * 80
           });
         });
       }
@@ -214,3 +214,4 @@ function App() {
 
 
 export default App;
+
