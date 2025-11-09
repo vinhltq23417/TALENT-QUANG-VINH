@@ -20,15 +20,15 @@ function App() {
 
   // Mock data - thay thế bằng API call thực tế
   const customerData = useMemo(() => ({
-    "At-risk": ["SENIOR_BUDGET_CONSCIOUS", "OUNG_AFFLUENT_TECH_SAVVY", "GENERAL_AUDIENCE"],
-    "Potential": ["SENIOR_BUDGET_CONSCIOUS", "OUNG_AFFLUENT_TECH_SAVVY", "GENERAL_AUDIENCE"],
-    "Good": ["SENIOR_BUDGET_CONSCIOUS", "OUNG_AFFLUENT_TECH_SAVVY", "GENERAL_AUDIENCE"],
-    "VIP": ["SENIOR_BUDGET_CONSCIOUS", "OUNG_AFFLUENT_TECH_SAVVY", "GENERAL_AUDIENCE"]
+    "At-risk": ["SENIOR_BUDGET_CONSCIOUS", "YOUNG_AFFLUENT_TECH_SAVVY", "GENERAL_AUDIENCE"],
+    "Potential": ["SENIOR_BUDGET_CONSCIOUS", "YOUNG_AFFLUENT_TECH_SAVVY", "GENERAL_AUDIENCE"],
+    "Good": ["SENIOR_BUDGET_CONSCIOUS", "YOUNG_AFFLUENT_TECH_SAVVY", "GENERAL_AUDIENCE"],
+    "VIP": ["SENIOR_BUDGET_CONSCIOUS", "YOUNG_AFFLUENT_TECH_SAVVY", "GENERAL_AUDIENCE"]
   }), []);
 
   const productData = useMemo(() => [
-    "Premium_High_Margin", "High_Performance_Bestsellers", 
-    "Emerging_Potential", "Low_Performance"
+    "Niche Products", "Popular Products", 
+    "Standard Products", "High Margin Products"
   ], []);
 
   const handleRunSimulation = async () => {
@@ -47,7 +47,7 @@ function App() {
               name: `${macro} - ${micro}`,
               type: 'CUSTOMER',
               budget: totalBudget * 0.6 / totalMicros,
-              baseROI: 40 + Math.random() * 70 // Mock ROI
+              baseROI: 5 + Math.random() * 10
             });
           });
         });
@@ -60,7 +60,7 @@ function App() {
             name: product,
             type: 'PRODUCT', 
             budget: totalBudget * 0.4 / selectedProducts.length,
-            baseROI: 50 + Math.random() * 80
+            baseROI: 5 + Math.random() * 10
           });
         });
       }
@@ -131,7 +131,7 @@ function App() {
                 <label>Total Budget (USD)</label>
                 <input
                   type="range"
-                  min="100000"
+                  min="0"
                   max="5000000"
                   step="100000"
                   value={totalBudget}
@@ -144,7 +144,7 @@ function App() {
                 <label>Simulation Months</label>
                 <input
                   type="range"
-                  min="3"
+                  min="0"
                   max="24"
                   value={simulationMonths}
                   onChange={(e) => setSimulationMonths(Number(e.target.value))}
@@ -214,4 +214,5 @@ function App() {
 
 
 export default App;
+
 
