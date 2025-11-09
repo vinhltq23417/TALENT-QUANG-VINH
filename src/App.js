@@ -20,10 +20,10 @@ function App() {
 
   // Mock data - thay thế bằng API call thực tế
   const customerData = useMemo(() => ({
-    "At-risk": ["Price_Sensitive_Shoppers", "Young_Digital_Enthusiasts", "Social_Media_Influencers"],
-    "Lost": ["Affluent_Professionals", "Tech_Savvy_Early_Adopters", "Senior_Traditionalists"],
-    "Potential": ["Quality_Focused_Buyers", "Affluent_Professionals", "Tech_Savvy_Early_Adopters"],
-    "VIP": ["High_Value_VIPs", "Middle_Age_Mainstream", "Young_Digital_Enthusiasts"]
+    "At-risk": ["SENIOR_BUDGET_CONSCIOUS", "OUNG_AFFLUENT_TECH_SAVVY", "GENERAL_AUDIENCE"],
+    "Potential": ["SENIOR_BUDGET_CONSCIOUS", "OUNG_AFFLUENT_TECH_SAVVY", "GENERAL_AUDIENCE"],
+    "Good": ["SENIOR_BUDGET_CONSCIOUS", "OUNG_AFFLUENT_TECH_SAVVY", "GENERAL_AUDIENCE"],
+    "VIP": ["SENIOR_BUDGET_CONSCIOUS", "OUNG_AFFLUENT_TECH_SAVVY", "GENERAL_AUDIENCE"]
   }), []);
 
   const productData = useMemo(() => [
@@ -211,5 +211,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
