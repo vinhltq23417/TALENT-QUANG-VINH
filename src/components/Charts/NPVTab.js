@@ -116,7 +116,7 @@ const NPVTab = ({ results }) => {
                 return (
                   <tr key={index}>
                     <td><strong>{result.name}</strong></td>
-                    <td className={result.npv > 0 ? 'positive' : 'negative'}>
+                    <td className={result.irr > 15 ? 'positive' : result.irr < 5 ? 'negative' : ''}>
                       <strong>${(result.npv || 0).toLocaleString()}</strong>
                     </td>
                     <td className={result.irr > 20 ? 'positive' : result.irr < 10 ? 'negative' : ''}>
@@ -145,8 +145,9 @@ const NPVTab = ({ results }) => {
             </thead>
             <tbody>
               {results.slice(0, 5).map((result, index) => {
-                const y1Cash = result.budget * result.avgROI / 100 * 0.6;
-                const y2Cash = result.budget * result.avgROI / 100 * 0.4;
+                const monthlyCash = result.monthlyROIs ? result.monthlyROIs.slice(0, 12).reduce((sum, roi) => sum + (result.budget * roi / 100), 0) / 12 : 0;
+                const y1Cash = monthlyCash * 12;
+                const y2Cash = monthlyCash * 12 * 0.75;
                 const cumulative = y1Cash + y2Cash - result.budget;
                 return (
                   <tr key={index}>
@@ -167,5 +168,6 @@ const NPVTab = ({ results }) => {
     </div>
   );
 };
+
 
 export default NPVTab;
