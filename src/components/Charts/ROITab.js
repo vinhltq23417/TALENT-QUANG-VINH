@@ -87,7 +87,7 @@ const ROITab = ({ results }) => {
                 <td><strong>{result.name}</strong></td>
                 <td><span className={`type-badge type-${result.type.toLowerCase()}`}>{result.type}</span></td>
                 <td>${result.budget.toLocaleString()}</td>
-                <td className={result.avgROI > 180 ? 'positive' : result.avgROI < 120 ? 'negative' : ''}>
+                <td className={result.avgROI > 80 ? 'positive' : result.avgROI < 40 ? 'negative' : ''}>
                   <strong>{result.avgROI}%</strong>
                 </td>
                 <td>${result.totalRevenue.toLocaleString()}</td>
@@ -105,5 +105,6 @@ const ROITab = ({ results }) => {
     </div>
   );
 };
+
 
 export default ROITab;
