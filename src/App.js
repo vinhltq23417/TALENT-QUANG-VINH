@@ -47,7 +47,7 @@ function App() {
               name: `${macro} - ${micro}`,
               type: 'CUSTOMER',
               budget: totalBudget * 0.6 / totalMicros,
-              baseROI: 10 + Math.random() * 2
+              baseROI: 80 + Math.random() * 2
             });
           });
         });
@@ -60,7 +60,7 @@ function App() {
             name: product,
             type: 'PRODUCT', 
             budget: totalBudget * 0.4 / selectedProducts.length,
-            baseROI: 10 + Math.random() * 2
+            baseROI: 80 + Math.random() * 2
           });
         });
       }
@@ -214,6 +214,7 @@ function App() {
 
 
 export default App;
+
 
 
 
