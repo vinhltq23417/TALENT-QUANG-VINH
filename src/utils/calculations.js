@@ -3,7 +3,7 @@ export const generateRandomEvents = (selectedEvents, totalMonths) => {
   const events = [];
   const eventPool = selectedEvents.map(id => ({
     id,
-    impact: (Math.random() - 0.5) * 0.4 // -20% to +20% impact
+    impact: (Math.random() - 0.5) * 0.05
   }));
 
   // Phân bố events không đều
@@ -34,4 +34,5 @@ export const calculateCorrelation = (x, y) => {
   const denominator = Math.sqrt((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY));
   
   return denominator === 0 ? 0 : numerator / denominator;
+
 };
