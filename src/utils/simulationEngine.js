@@ -58,7 +58,7 @@ export const runSimulation = async (strategies, totalMonths, macroFactors, micro
 const calculateNPV = (initialInvestment, monthlyROIs, discountRate) => {
   let npv = -initialInvestment;
   monthlyROIs.forEach((roi, index) => {
-    const cashflow = (initialInvestment * roi / 100) / 12;
+    const cashflow = (initialInvestment * roi / 100);
     npv += cashflow / Math.pow(1 + discountRate/12, index + 1);
   });
   return parseFloat(npv.toFixed(2));
@@ -66,7 +66,7 @@ const calculateNPV = (initialInvestment, monthlyROIs, discountRate) => {
 
 const calculateIRR = (initialInvestment, monthlyROIs) => {
   // Simplified IRR calculation
-  const totalReturn = monthlyROIs.reduce((sum, roi) => sum + (initialInvestment * roi / 100 / 12), 0);
+  const totalReturn = monthlyROIs.reduce((sum, roi) => sum + (initialInvestment * roi / 100), 0);
   const totalMonths = monthlyROIs.length;
   return parseFloat(((totalReturn - initialInvestment) / initialInvestment * 100).toFixed(2));
 };
@@ -74,7 +74,7 @@ const calculateIRR = (initialInvestment, monthlyROIs) => {
 const calculatePaybackPeriod = (initialInvestment, monthlyROIs) => {
   let cumulativeCashflow = 0;
   for (let i = 0; i < monthlyROIs.length; i++) {
-    cumulativeCashflow += (initialInvestment * monthlyROIs[i] / 100 / 12);
+    cumulativeCashflow += (initialInvestment * monthlyROIs[i] / 100);
     if (cumulativeCashflow >= initialInvestment) {
       return i + 1;
     }
@@ -82,3 +82,4 @@ const calculatePaybackPeriod = (initialInvestment, monthlyROIs) => {
   return monthlyROIs.length;
 
 };
+
