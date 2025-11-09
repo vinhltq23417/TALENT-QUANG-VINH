@@ -17,7 +17,7 @@ const KPIsTab = ({ results }) => {
 
   const monthlyKPIs = Array.from({ length: 12 }, (_, i) => ({
     month: `M${i + 1}`,
-    roi: 150 + Math.random() * 50,
+    roi: 40 + Math.random() * 20,
     revenue: 50000 + Math.random() * 100000,
     customers: 100 + Math.random() * 200,
     satisfaction: 70 + Math.random() * 25
@@ -124,7 +124,7 @@ const KPIsTab = ({ results }) => {
             </thead>
             <tbody>
               {[...(results || [])]
-                .sort((a, b) => ((b.avgROI || 0) * 0.4 + ((b.npv || 0) / 10000 * 0.6)) - ((a.avgROI || 0) * 0.4 + ((a.npv || 0) / 10000 * 0.6)))
+                .sort((a, b) => ((b.avgROI || 0) * 0.6 + (Math.max(0, (b.npv || 0)) / 5000 * 0.4)) - ((a.avgROI || 0) * 0.4 + ((a.npv || 0) / 10000 * 0.6)))
                 .map((result, index) => (
                   <tr key={index}>
                     <td>
@@ -137,7 +137,7 @@ const KPIsTab = ({ results }) => {
                     <td className={(result.avgROI || 0) > 180 ? 'positive' : ''}>{result.avgROI || 0}%</td>
                     <td className={(result.npv || 0) > 0 ? 'positive' : 'negative'}>${(result.npv || 0).toLocaleString()}</td>
                     <td className={(result.avgROI || 0) < 120 ? 'negative' : 'positive'}>
-                      {(result.avgROI || 0) < 120 ? 'High' : (result.avgROI || 0) < 160 ? 'Medium' : 'Low'}
+                      {(result.avgROI || 0) < 60 ? 'High' : (result.avgROI || 0) < 90 ? 'Medium' : 'Low'}
                     </td>
                   </tr>
                 ))}
@@ -161,14 +161,14 @@ const KPIsTab = ({ results }) => {
               <tr>
                 <td><strong>ROI</strong></td>
                 <td>{safeResults.length > 0 ? ((safeResults.reduce((sum, r) => sum + (r.avgROI || 0), 0) / safeResults.length) || 0).toFixed(1) : '0.0'}%</td>
-                <td>180%</td>
+                <td>80%</td>
                 <td className="negative">-{safeResults.length > 0 ? ((180 - (safeResults.reduce((sum, r) => sum + (r.avgROI || 0), 0) / safeResults.length)) || 0).toFixed(1) : '180.0'}%</td>
                 <td className="negative">❌ Below Target</td>
               </tr>
               <tr>
                 <td><strong>Revenue</strong></td>
                 <td>${(safeResults.reduce((sum, r) => sum + (r.totalRevenue || 0), 0) || 0).toLocaleString()}</td>
-                <td>$2,000,000</td>
+                <td>$400,000</td>
                 <td className="positive">+${((safeResults.reduce((sum, r) => sum + (r.totalRevenue || 0), 0) || 0) - 2000000).toLocaleString()}</td>
                 <td className="positive">✅ Above Target</td>
               </tr>
@@ -193,5 +193,6 @@ const KPIsTab = ({ results }) => {
     </div>
   );
 };
+
 
 export default KPIsTab;
