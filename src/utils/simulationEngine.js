@@ -18,19 +18,19 @@ export const runSimulation = async (strategies, totalMonths, macroFactors, micro
           let monthlyROI = baseROI;
           
           // Ảnh hưởng của factors
-          monthlyROI *= (1 + macroFactors.length * 0.01);
-          monthlyROI *= (1 + microFactors.length * 0.005);
+          monthlyROI *= (1 + macroFactors.length * 1);
+          monthlyROI *= (1 + microFactors.length * 0.5);
           
           // Ảnh hưởng của events trong tháng
           const monthEvents = events.filter(e => e.month === month);
           monthEvents.forEach(event => {
-            monthlyROI *= (1 + event.impact);
+            monthlyROI *= (100* event.impact);
           });
           
           // Biến động ngẫu nhiên
-          monthlyROI *= (1 + (Math.random() - 0.5) * 0.1);
+          monthlyROI *= ((Math.random() - 0.5) * 10);
           
-          monthlyROI = Math.max(50, Math.min(300, monthlyROI));
+          monthlyROI = Math.max(20, Math.min(150, monthlyROI));
           monthlyROIs.push(monthlyROI);
           
           const monthlyRevenue = strategy.budget * monthlyROI / 100;
@@ -80,4 +80,5 @@ const calculatePaybackPeriod = (initialInvestment, monthlyROIs) => {
     }
   }
   return monthlyROIs.length;
+
 };
